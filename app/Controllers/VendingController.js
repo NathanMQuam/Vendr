@@ -1,10 +1,11 @@
-import { ProxyState } from "../AppState";
-import { vendingService } from "../Services/vendingService";
+import { ProxyState } from "../AppState.js";
+import { vendingService } from "../Services/vendingService.js";
 
 
 // Private
 function _draw() {
    let items = ProxyState.items
+   document.getElementById("app").innerHTML = /*html*/``
 }
 
 
@@ -15,6 +16,7 @@ export default class VendingController {
       _draw()
    }
    buyItem(itemId) {
+      console.log("From the VendingController buyItem:", itemId);
       vendingService.buyItem(itemId)
    }
 }
