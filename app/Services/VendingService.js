@@ -19,11 +19,22 @@ class VendingService {
    buyItem(itemId) {
       console.log("From the VendingService, buyItem:", itemId);
       let item = ProxyState.items.find(item => item.ItemId == itemId)
-      let wallet = ProxyState.wallet
-      // TODO: Buy an item
       // Check that there is enough money to buy the item
-      // If there is, remove the price from the wallet and decrement the numAvailable on the item
-      
+      if(ProxyState.wallet >= item.Price) {
+         console.log(item);
+         // If there is, remove the price from the wallet and decrement the numAvailable on the item
+         if (item.Purchase) {
+            ProxyState.wallet -= item.Price
+            // Update the whole screen, calls _draw() in VendingController.js
+            ProxyState.items = ProxyState.items
+            return
+         } else {
+            console.warn("No items left, could not buy")
+         }
+      } else {
+         console.warn("Tried to buy an item without enough money")
+      }
+
       // TODO: Stretch goal
       // Send a single copy of the item down to the "retrieval slot" of the vending machine
       // Only one item type can be there at a time

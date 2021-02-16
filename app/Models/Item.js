@@ -7,13 +7,22 @@ export default class Item {
       this.isSold = isSold
    }
 
+   get Purchase() {
+      if(this.numAvailable > 0) {
+         this.numAvailable -= 1
+         return true
+      } else {
+         return false
+      }
+   }
+
    get Template() {
-      let button = /*html*/ ``
+      //let button = /*html*/ ``
       // this.isSold ? "" : null
       
       return /*html*/ `
-         <div class="col-3 p-2">
-            <div class="card shadow p-3">
+         <div class="col-3 p-2 h-100">
+            <div id="${this.itemId}" class="card shadow p-3 h-100">
                <h3>${this.itemName}</h3>
                <p>$${this.price}</p>
                <button class="btn btn-primary" onclick='app.vendingController.buyItem("${this.itemId}")'>Buy</button>
