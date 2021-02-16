@@ -17,7 +17,7 @@ class VendingService {
       console.log(ProxyState.items);
    }
    buyItem(itemId) {
-      console.log("From the VendingService, buyItem:");
+      console.log("From the VendingService, buyItem");
       let item = ProxyState.items.find(item => item.ItemId == itemId)
       // Check that there is enough money to buy the item
       if(ProxyState.wallet >= item.Price) {
@@ -25,13 +25,13 @@ class VendingService {
          if (item.Purchase) {
             ProxyState.wallet -= item.Price
             console.log(item);
+            return item
          } else {
             console.warn("No items left, could not buy")
          }
-         // Update the whole screen, calls _draw() in VendingController.js
-         ProxyState.items = ProxyState.items
       } else {
          console.warn("Tried to buy an item without enough money")
+         return
       }
       
       // TODO: Stretch goal

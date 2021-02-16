@@ -42,4 +42,8 @@ export default class Item {
    get ItemId() {
       return this.itemId
    }
+
+   get ItemName() {
+      return this.itemName
+   }
 }
