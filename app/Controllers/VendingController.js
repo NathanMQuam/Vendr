@@ -25,7 +25,6 @@ function _draw() {
 // Public
 export default class VendingController {
    constructor() {
-      // TODO: Initialize the vending machine's inventory
       ProxyState.on("items", _draw)
       _draw()
    }

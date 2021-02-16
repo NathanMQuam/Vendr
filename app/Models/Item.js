@@ -8,17 +8,25 @@ export default class Item {
    }
 
    get Template() {
-      let button = /*html*/ `<button class="btn btn-primary" onclick='app.vendingController.buyItem("${this.itemId}")'>Buy</button>`
+      let button = /*html*/ ``
       // this.isSold ? "" : null
       
       return /*html*/ `
          <div class="col-3 p-2">
             <div class="card shadow p-3">
-               <h2>${this.itemName}</h2>
-               <p>${this.price}</p>
-               ${button}
+               <h3>${this.itemName}</h3>
+               <p>$${this.price}</p>
+               <button class="btn btn-primary" onclick='app.vendingController.buyItem("${this.itemId}")'>Buy</button>
             </div>
          </div>
       `
+   }
+
+   get Price() {
+      return this.price
+   }
+
+   get ItemId() {
+      return this.itemId
    }
 }
