@@ -1,10 +1,10 @@
 export default class Item {
-   constructor(itemName, isSold = false) {
+   constructor(itemName) {
       this.itemName = itemName
       this.price = (Math.floor(Math.random() * 10) + 3) * 0.25
       this.itemId = (Math.floor(Math.random() * 100000)).toString()
       this.numAvailable = (Math.floor(Math.random() * 10))
-      this.isSold = isSold
+      this.isSoldOut = false
    }
 
    get Purchase() {
@@ -12,20 +12,24 @@ export default class Item {
          this.numAvailable -= 1
          return true
       } else {
+         this.isSoldOut = true
          return false
       }
    }
 
    get Template() {
-      //let button = /*html*/ ``
-      // this.isSold ? "" : null
+      this.isSoldOut = ! (this.numAvailable > 0)
+      let state = this.isSoldOut ? "btn-warning" : "btn-primary"
+      let price = this.isSoldOut ? "SOLD OUT" : '$' + this.price
       
       return /*html*/ `
          <div class="col-3 p-2 h-100">
             <div id="${this.itemId}" class="card shadow p-3 h-100">
                <h3>${this.itemName}</h3>
-               <p>$${this.price}</p>
-               <button class="btn btn-primary" onclick='app.vendingController.buyItem("${this.itemId}")'>Buy</button>
+               
+               <button class="btn ${state}" onclick='app.vendingController.buyItem("${this.itemId}")'>
+                  ${price}
+               </button>
             </div>
          </div>
       `

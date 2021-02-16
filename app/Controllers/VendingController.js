@@ -1,7 +1,6 @@
 import { ProxyState } from "../AppState.js";
 import { vendingService } from "../Services/vendingService.js";
 
-
 // Private
 function _draw() {
    let items = ProxyState.items
@@ -18,6 +17,11 @@ function _draw() {
       </div>
       <div class="row">
          ${template}
+      </div>
+      <div class="row">
+         <div class="col-4 offset-4 bg-dark text-light">
+            <p>Output item</p>
+         </div>
       </div>`
 }
 
@@ -29,7 +33,7 @@ export default class VendingController {
       _draw()
    }
    buyItem(itemId) {
-      console.log("From the VendingController buyItem:", itemId);
+      console.log("From the VendingController buyItem:");
       vendingService.buyItem(itemId)
    }
 }
